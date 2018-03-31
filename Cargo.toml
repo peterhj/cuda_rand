@@ -1,0 +1,14 @@
+[package]
+name = "cuda_rand"
+version = "0.0.1"
+authors = ["Peter Jin <peterhaijin@gmail.com>"]
+
+[lib]
+name = "cuda_rand"
+path = "src/lib.rs"
+
+[build-dependencies]
+bindgen = "*"
+
+[dependencies]
+cuda = { path = "../libcuda" }
