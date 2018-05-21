@@ -47,6 +47,17 @@ impl CurandGenerator {
     }
   }
 
+  pub fn set_seed(&mut self, seed: u64) -> CurandResult<()> {
+    let status = unsafe { curandSetPseudoRandomGeneratorSeed(self.ptr, seed) };
+    match status {
+      curandStatus_CURAND_STATUS_SUCCESS => Ok(()),
+      curandStatus_CURAND_STATUS_TYPE_ERROR => {
+        panic!("curand generator is not a PRNG, cannot set seed");
+      }
+      _ => Err(CurandError(status)),
+    }
+  }
+
   pub fn set_stream(&mut self, stream: &mut CudaStream) -> CurandResult<()> {
     let status = unsafe { curandSetStream(self.ptr, stream.as_mut_ptr()) };
     match status {
