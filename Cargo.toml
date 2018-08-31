@@ -8,7 +8,7 @@ name = "cuda_rand"
 path = "src/lib.rs"
 
 [build-dependencies]
-bindgen = "*"
+bindgen = "^0.38"
 
 [dependencies]
-cuda = { path = "../libcuda" }
+cuda = "^0.3"
